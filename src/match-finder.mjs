@@ -1,9 +1,10 @@
 import api from './data/api.mjs';
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Ejemplo: Definir los <option> de un select
-  document.querySelector('#personaje1').innerHTML = '<option value="">Súper López</option>';
-
-  // Ejemplo: Llamar al API para obtener los personajes
-  api.personajes(personajes => console.log(personajes));
+  api.personajes(personajes => {
+    for (let i = 0; i < personajes.length; i++) {
+      document.querySelector('#personaje1').innerHTML += `<option value="${personajes[i].id}">${personajes[i].name}</option>`;
+      document.querySelector('#personaje2').innerHTML += `<option value="${personajes[i].id}">${personajes[i].name}</option>`;
+    }
+  });
 });
