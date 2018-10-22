@@ -4,8 +4,8 @@ import {intersect} from "./lib/arrays.mjs";
 
 const view = View();
 
-view.onReady(() => {
-  api.personajes().then(view.addPersonajes);
+view.onReady(async () => {
+  view.addPersonajes(await api.personajes());
 
   view.onBuscar(([id1, id2]) => Promise.all([api.comics(id1), api.comics(id2)])
       .then(intersect((a, b) => a.equals(b)))
