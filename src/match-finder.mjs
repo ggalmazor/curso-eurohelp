@@ -1,10 +1,21 @@
 import api from './data/api.mjs';
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  const view = {
+    buildOption(personaje) {
+      return `<option value="${personaje.id}">${personaje.name}</option>`;
+    },
+    addOption(option) {
+      document.querySelector('#personaje1').innerHTML += option;
+      document.querySelector('#personaje2').innerHTML += option;
+    }
+  };
+
   api.personajes(personajes => {
     for (let i = 0; i < personajes.length; i++) {
-      document.querySelector('#personaje1').innerHTML += `<option value="${personajes[i].id}">${personajes[i].name}</option>`;
-      document.querySelector('#personaje2').innerHTML += `<option value="${personajes[i].id}">${personajes[i].name}</option>`;
+      const option = view.buildOption(personajes[i]);
+      view.addOption(option);
     }
   });
 
