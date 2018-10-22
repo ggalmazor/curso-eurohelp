@@ -9,9 +9,7 @@ const intersect = criteria => arrays => arrays.reduce(intersectPair(criteria));
 view.onReady(() => {
   api.personajes().then(view.addPersonajes);
 
-  view.onBuscar(([id1, id2]) => {
-    Promise.all([api.comics(id1), api.comics(id2)])
-        .then(intersect((a, b) => a.equals(b)))
-        .then(view.addComics)
-  });
+  view.onBuscar(([id1, id2]) => Promise.all([api.comics(id1), api.comics(id2)])
+      .then(intersect((a, b) => a.equals(b)))
+      .then(view.addComics));
 });
