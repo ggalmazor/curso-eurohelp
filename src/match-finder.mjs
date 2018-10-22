@@ -8,14 +8,7 @@ view.onReady(() => {
 
   view.onBuscar(([id1, id2]) => {
     Promise.all([api.comics(id1), api.comics(id2)])
-        .then(([comics1, comics2]) => {
-          const comics = [];
-          for (let i = 0; i < comics1.length; i++)
-            for (let j = 0; j < comics2.length; j++)
-              if (comics1[i].id === comics2[j].id)
-                comics.push(comics1[i]);
-          return comics;
-        })
+        .then(([comics1, comics2]) => comics1.filter(comic1 => comics2.some(comic2 => comic1.id === comic2.id)))
         .then(view.addComics)
   });
 });
