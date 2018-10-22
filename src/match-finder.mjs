@@ -9,14 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
     addOption(option) {
       document.querySelector('#personaje1').innerHTML += option;
       document.querySelector('#personaje2').innerHTML += option;
+    },
+    addPersonajes(personajes) {
+      for (let i = 0; i < personajes.length; i++) {
+        const option = this.buildOption(personajes[i]);
+        this.addOption(option);
+      }
     }
   };
 
   api.personajes(personajes => {
-    for (let i = 0; i < personajes.length; i++) {
-      const option = view.buildOption(personajes[i]);
-      view.addOption(option);
-    }
+    view.addPersonajes(personajes);
   });
 
   document.querySelector('#buscar').addEventListener('click', event => {
