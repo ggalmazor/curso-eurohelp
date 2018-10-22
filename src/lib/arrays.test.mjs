@@ -1,4 +1,4 @@
-const {intersect} = require("./arrays.mjs");
+import {intersect} from "./arrays.mjs";
 
 const eqeqeq = (a, b) => a === b;
 
