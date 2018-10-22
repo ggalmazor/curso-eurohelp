@@ -4,9 +4,7 @@ import View from './view.mjs';
 const view = View();
 
 view.onReady(() => {
-  api.personajes(personajes => {
-    view.addPersonajes(personajes);
-  });
+  api.personajes(view.addPersonajes);
 
   view.onBuscar(([id1, id2]) => {
     api.comics(id1, comics1 => {
