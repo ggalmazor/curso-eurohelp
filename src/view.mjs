@@ -8,7 +8,7 @@ export default () => {
 
   function addPersonajes(personajes) {
     for (let i = 0; i < personajes.length; i++) {
-      const option = `<option value="${personajes[i].id}">${personajes[i].name}</option>`;
+      const option = `<option value="${personajes[i].getId()}">${personajes[i].getNombre()}</option>`;
       dom.p1.innerHTML += option;
       dom.p2.innerHTML += option;
     }
@@ -33,9 +33,9 @@ export default () => {
   function addComic(comic) {
     dom.resultados.innerHTML += `
       <tr>
-        <td>${comic.id}</td>
-        <td>${comic.title}</td>
-        <td>${comic.characters}</td>
+        <td>${comic.getId()}</td>
+        <td>${comic.getTitulo()}</td>
+        <td>${comic.getPersonajes()}</td>
       </tr>
     `;
   }
