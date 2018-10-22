@@ -1,10 +1,8 @@
 import api from './data/api.mjs';
 import View from './view.mjs';
+import {intersect} from "./lib/arrays.mjs";
 
 const view = View();
-
-const intersectPair = criteria => (a, b) => a.filter(ax => b.some(bx => criteria(ax, bx)));
-const intersect = criteria => arrays => arrays.reduce(intersectPair(criteria));
 
 view.onReady(() => {
   api.personajes().then(view.addPersonajes);
