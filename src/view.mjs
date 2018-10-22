@@ -30,8 +30,8 @@ export default () => {
     });
   }
 
-  function addComic(comic) {
-    dom.resultados.innerHTML += `
+  function buildComic(comic) {
+    return `
       <tr>
         <td>${comic.getId()}</td>
         <td>${comic.getTitulo()}</td>
@@ -40,5 +40,9 @@ export default () => {
     `;
   }
 
-  return {onReady, onBuscar, addPersonajes, addComic};
+  function addComics(comics) {
+    dom.resultados.innerHTML += comics.map(comic => buildComic(comic)).join("\n");
+  }
+
+  return {onReady, onBuscar, addPersonajes, addComics};
 }
