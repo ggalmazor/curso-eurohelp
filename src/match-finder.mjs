@@ -1,5 +1,7 @@
 import api from './data/api.mjs';
-import view from './view.mjs';
+import View from './view.mjs';
+
+const view = View();
 
 view.onReady(() => {
   api.personajes(personajes => {

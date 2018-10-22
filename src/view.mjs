@@ -1,40 +1,49 @@
-function buildOption(personaje) {
-  return `<option value="${personaje.id}">${personaje.name}</option>`;
-}
+export default () => {
+  const dom = {
+    p1: document.querySelector('#personaje1'),
+    p2: document.querySelector('#personaje2'),
+    buscar: document.querySelector('#buscar'),
+    resultados: document.querySelector('#resultados tbody')
+  };
 
-function addOption(option) {
-  document.querySelector('#personaje1').innerHTML += option;
-  document.querySelector('#personaje2').innerHTML += option;
-}
+  function buildOption(personaje) {
+    return `<option value="${personaje.id}">${personaje.name}</option>`;
+  }
 
-function addPersonajes(personajes) {
-  for (let i = 0; i < personajes.length; i++)
-    addOption(buildOption(personajes[i]));
-}
+  function addOption(option) {
+    dom.p1.innerHTML += option;
+    dom.p2.innerHTML += option;
+  }
 
-function onReady(block) {
-  document.addEventListener("DOMContentLoaded", block);
-}
+  function addPersonajes(personajes) {
+    for (let i = 0; i < personajes.length; i++)
+      addOption(buildOption(personajes[i]));
+  }
 
-function onBuscar(callback) {
-  document.querySelector('#buscar').addEventListener('click', event => {
-    event.preventDefault();
-    event.stopPropagation();
-    document.querySelector('#resultados tbody').innerHTML = '';
-    const id1 = document.querySelector('#personaje1').value;
-    const id2 = document.querySelector('#personaje2').value;
-    callback([id1, id2]);
-  });
-}
+  function onReady(block) {
+    document.addEventListener("DOMContentLoaded", block);
+  }
 
-function addComic(comic) {
-  document.querySelector('#resultados tbody').innerHTML += `
-    <tr>
-      <td>${comic.id}</td>
-      <td>${comic.title}</td>
-      <td>${comic.characters}</td>
-    </tr>
-  `;
-}
+  function onBuscar(callback) {
+    dom.buscar.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      dom.resultados.innerHTML = '';
+      const id1 = dom.p1.value;
+      const id2 = dom.p2.value;
+      callback([id1, id2]);
+    });
+  }
 
-export default {onReady, onBuscar, addPersonajes, addComic};
+  function addComic(comic) {
+    dom.resultados.innerHTML += `
+      <tr>
+        <td>${comic.id}</td>
+        <td>${comic.title}</td>
+        <td>${comic.characters}</td>
+      </tr>
+    `;
+  }
+
+  return {onReady, onBuscar, addPersonajes, addComic};
+}
