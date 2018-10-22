@@ -6,3 +6,5 @@ export const intersect = criteria => arrays => {
     return arrays[0];
   return arrays.reduce(intersectPair(criteria));
 };
+
+export const map = mapper => array => array.map(mapper);

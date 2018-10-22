@@ -1,0 +1,1 @@
+export const callMethod = method => obj => obj[method].call(obj);
