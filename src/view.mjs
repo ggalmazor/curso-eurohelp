@@ -6,18 +6,12 @@ export default () => {
     resultados: document.querySelector('#resultados tbody')
   };
 
-  function buildOption(personaje) {
-    return `<option value="${personaje.id}">${personaje.name}</option>`;
-  }
-
-  function addOption(option) {
-    dom.p1.innerHTML += option;
-    dom.p2.innerHTML += option;
-  }
-
   function addPersonajes(personajes) {
-    for (let i = 0; i < personajes.length; i++)
-      addOption(buildOption(personajes[i]));
+    for (let i = 0; i < personajes.length; i++) {
+      const option = `<option value="${personajes[i].id}">${personajes[i].name}</option>`;
+      dom.p1.innerHTML += option;
+      dom.p2.innerHTML += option;
+    }
   }
 
   function onReady(block) {
@@ -29,9 +23,10 @@ export default () => {
       event.preventDefault();
       event.stopPropagation();
       dom.resultados.innerHTML = '';
-      const id1 = dom.p1.value;
-      const id2 = dom.p2.value;
-      callback([id1, id2]);
+      callback([
+        dom.p1.value,
+        dom.p2.value
+      ]);
     });
   }
 
