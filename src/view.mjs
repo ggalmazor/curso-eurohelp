@@ -12,4 +12,29 @@ function addPersonajes(personajes) {
     addOption(buildOption(personajes[i]));
 }
 
-export default {addPersonajes};
+function onReady(block) {
+  document.addEventListener("DOMContentLoaded", block);
+}
+
+function onBuscar(callback) {
+  document.querySelector('#buscar').addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    document.querySelector('#resultados tbody').innerHTML = '';
+    const id1 = document.querySelector('#personaje1').value;
+    const id2 = document.querySelector('#personaje2').value;
+    callback([id1, id2]);
+  });
+}
+
+function addComic(comic) {
+  document.querySelector('#resultados tbody').innerHTML += `
+    <tr>
+      <td>${comic.id}</td>
+      <td>${comic.title}</td>
+      <td>${comic.characters}</td>
+    </tr>
+  `;
+}
+
+export default {onReady, onBuscar, addPersonajes, addComic};
