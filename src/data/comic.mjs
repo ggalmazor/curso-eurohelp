@@ -20,4 +20,8 @@ export default class Comic {
   getPersonajes() {
     return this.personajes;
   }
+
+  equals(other) {
+    return other instanceof Comic && this.id === other.id;
+  }
 }

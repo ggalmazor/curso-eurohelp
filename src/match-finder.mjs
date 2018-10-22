@@ -11,7 +11,7 @@ view.onReady(() => {
 
   view.onBuscar(([id1, id2]) => {
     Promise.all([api.comics(id1), api.comics(id2)])
-        .then(([comics1, comics2]) => interseccion((a, b) => a.getId() === b.getId())(comics1, comics2))
+        .then(([comics1, comics2]) => interseccion((a, b) => a.equals(b))(comics1, comics2))
         .then(view.addComics)
   });
 });
