@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelector('#buscar').addEventListener('click', () => {
-    console.log("CLICK!");
+  document.querySelector('#buscar').addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(`P1: ${document.querySelector('#personaje1').value}, P2: ${document.querySelector('#personaje2').value}`);
   });
 });
