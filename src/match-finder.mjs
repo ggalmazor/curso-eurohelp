@@ -3,8 +3,7 @@ import View from './view.mjs';
 
 const view = View();
 
-
-const interseccion = criteria => (comics1, comics2) => comics1.filter(comic1 => comics2.some(comic2 => criteria(comic1, comic2)));
+const interseccion = criteria => (a, b) => a.filter(ax => b.some(bx => criteria(ax, bx)));
 
 view.onReady(() => {
   api.personajes().then(view.addPersonajes);
