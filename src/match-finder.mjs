@@ -7,4 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector('#personaje2').innerHTML += `<option value="${personajes[i].id}">${personajes[i].name}</option>`;
     }
   });
+
+  document.querySelector('#buscar').addEventListener('click', () => {
+    console.log("CLICK!");
+  });
 });
