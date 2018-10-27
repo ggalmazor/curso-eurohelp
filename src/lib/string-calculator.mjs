@@ -14,18 +14,35 @@ const parseBody = input => input.startsWith("//")
 const normalize = input => parseSeparators(input).reduce(replaceAll(","), parseBody(input));
 
 const lessThan = n => m => m < n;
+const sum = (a, b) => a + b;
 
-export default input => {
-  const normalizedInput = normalize(input);
-
-  const parts = normalizedInput.split(",");
-  const numbers = parts.map(part => parseInt(part, 10));
-
+const checkNegatives = numbers => {
   const negativeNumbers = numbers.filter(lessThan(0));
   if (negativeNumbers.length > 0)
     throw new Error(`Negatives are not allowed: ${negativeNumbers.join(", ")}`);
+};
 
-  const numbersToSum = numbers.filter(lessThan(1000));
+const split = separator => text => text.split(separator);
 
-  return numbersToSum.reduce((a, b) => a + b, 0);
-}
+const toInt = n => parseInt(n, 10);
+
+const map = mapper => array => array.map(mapper);
+const filter = predicate => array => array.filter(predicate);
+const reduce = (binaryFn, identity) => array => array.reduce(binaryFn, identity);
+
+const peek = fn => input => {
+  fn(input);
+  return input;
+};
+
+const compose = (fa, fb) => input => fb(fa(input));
+const pipe = (...fns) => fns.reduce(compose, i => i);
+
+export default pipe(
+    normalize,
+    split(","),
+    map(toInt),
+    peek(checkNegatives),
+    filter(lessThan(1000)),
+    reduce(sum, 0)
+);
