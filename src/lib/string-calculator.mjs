@@ -1,10 +1,15 @@
+const replaceAll = (replacement, search, text) => text.replace(new RegExp(search, "g"), replacement);
+
 export default input => {
   if (input === "")
     return 0;
 
   let normalizedInput = input.replace(/\n/g, ",");
   if (normalizedInput.startsWith("//")){
-    normalizedInput = normalizedInput.substring(4).replace(new RegExp(normalizedInput[2], "g"), ",");
+    const search = normalizedInput[2];
+    const text = normalizedInput.substring(4);
+    const replacement = ",";
+    normalizedInput = replaceAll(replacement, search, text);
   }
 
   const parts = normalizedInput.split(",");
