@@ -4,10 +4,8 @@ const replaceAll = (replacement, search, text) => text.replace(new RegExp(escape
 const normalize = input => {
   if (input.startsWith("//[")) {
     let body = input.substring(input.indexOf("\n") + 1);
-    input.substring(3, input.lastIndexOf("]")).split("][").forEach(separator => {
-      body = replaceAll(",", separator, body);
-    });
-    return body;
+    const separators = input.substring(3, input.lastIndexOf("]")).split("][");
+    return separators.reduce((output, separator) => replaceAll(",", separator, output), body);
   }
   if (input.startsWith("//")) {
     const separator = input[2];
