@@ -1,13 +1,12 @@
 const replaceAll = (replacement, search, text) => text.replace(new RegExp(search, "g"), replacement);
 
 const normalize = input => {
-  let normalizedInput = replaceAll(",", "\n", input);
-  if (normalizedInput.startsWith("//")) {
-    const separator = normalizedInput[2];
-    const body = normalizedInput.substring(4);
-    normalizedInput = replaceAll(",", separator, body);
+  if (input.startsWith("//")) {
+    const separator = input[2];
+    const body = input.substring(4);
+    return replaceAll(",", separator, body);
   }
-  return normalizedInput;
+  return replaceAll(",", "\n", input);
 };
 
 export default input => {
