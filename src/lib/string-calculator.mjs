@@ -1,6 +1,12 @@
-const replaceAll = (replacement, search, text) => text.replace(new RegExp(search, "g"), replacement);
+const escapeRegExp = search => search.replace(/\*/g, "\\*");
+const replaceAll = (replacement, search, text) => text.replace(new RegExp(escapeRegExp(search), "g"), replacement);
 
 const normalize = input => {
+  if (input.startsWith("//[")) {
+    const separator = input.substring(3, input.indexOf("]"));
+    const body = input.substring(input.indexOf("\n") + 1);
+    return replaceAll(",", separator, body);
+  }
   if (input.startsWith("//")) {
     const separator = input[2];
     const body = input.substring(4);
