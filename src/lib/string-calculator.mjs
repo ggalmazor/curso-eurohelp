@@ -13,6 +13,7 @@ const parseBody = input => input.startsWith("//")
 
 const normalize = input => parseSeparators(input).reduce(replaceAll(","), parseBody(input));
 
+const lessThan = n => m => m < n;
 
 export default input => {
   if (input === "")
@@ -23,11 +24,11 @@ export default input => {
   const parts = normalizedInput.split(",");
   const numbers = parts.map(part => parseInt(part, 10));
 
-  const negativeNumbers = numbers.filter(n => n < 0);
+  const negativeNumbers = numbers.filter(lessThan(0));
   if (negativeNumbers.length > 0)
     throw new Error(`Negatives are not allowed: ${negativeNumbers.join(", ")}`);
 
-  const numbersToSum = numbers.filter(n => n < 1000);
+  const numbersToSum = numbers.filter(lessThan(1000));
 
   return numbersToSum.reduce((a, b) => a + b, 0);
 }
