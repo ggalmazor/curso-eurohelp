@@ -2,18 +2,21 @@ const escapeRegExp = search => search.replace(/\*/g, "\\*");
 const replaceAll = (replacement, search, text) => text.replace(new RegExp(escapeRegExp(search), "g"), replacement);
 
 const normalize = input => {
+
   if (input.startsWith("//[")) {
+    const body = input.substring(input.indexOf("\n") + 1);
     const separators = input.substring(3, input.lastIndexOf("]")).split("][");
     return separators.reduce(
         (output, separator) => replaceAll(",", separator, output),
-        input.substring(input.indexOf("\n") + 1)
+        body
     );
   }
   if (input.startsWith("//")) {
+    const body = input.substring(input.indexOf("\n") + 1);
     const separators = [input[2]];
     return separators.reduce(
         (output, separator) => replaceAll(",", separator, output),
-        input.substring(input.indexOf("\n") + 1)
+        body
     );
   }
   return replaceAll(",", "\n", input);
