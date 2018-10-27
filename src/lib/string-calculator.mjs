@@ -6,12 +6,16 @@ const normalize = input => {
   let separators;
   if (input.startsWith("//[")) {
     body = input.substring(input.indexOf("\n") + 1);
-    separators = input.substring(3, input.lastIndexOf("]")).split("][");
   } else if (input.startsWith("//")) {
     body = input.substring(input.indexOf("\n") + 1);
-    separators = [input[2]];
   } else {
     body = input;
+  }
+  if (input.startsWith("//[")) {
+    separators = input.substring(3, input.lastIndexOf("]")).split("][");
+  } else if (input.startsWith("//")) {
+    separators = [input[2]];
+  } else {
     separators = ["\n"];
   }
   return separators.reduce(
