@@ -22,5 +22,7 @@ export default input => {
   if (negativeNumbers.length > 0)
     throw new Error(`Negatives are not allowed: ${negativeNumbers.join(", ")}`);
 
-  return numbers.reduce((a, b) => a + b, 0);
+  const numbersToSum = numbers.filter(n => n < 1000);
+
+  return numbersToSum.reduce((a, b) => a + b, 0);
 }
