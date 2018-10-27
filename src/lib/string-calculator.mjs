@@ -17,5 +17,10 @@ export default input => {
 
   const parts = normalizedInput.split(",");
   const numbers = parts.map(part => parseInt(part, 10));
+
+  const negativeNumbers = numbers.filter(n => n < 0);
+  if (negativeNumbers.length > 0)
+    throw new Error(`Negatives are not allowed: ${negativeNumbers.join(", ")}`);
+
   return numbers.reduce((a, b) => a + b, 0);
 }
