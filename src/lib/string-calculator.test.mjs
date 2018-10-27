@@ -17,3 +17,8 @@ test("Puede usar otros separadores", () => {
 test("Falla si detecta números negativos", () => {
   expect(() => sc("-1,2")).toThrow(/-1/);
 });
+
+test("Ignora números mayores o iguales a 1000", () => {
+  expect(sc("1000,2")).toBe(2);
+});
+
