@@ -2,7 +2,6 @@ const escapeRegExp = search => search.replace(/\*/g, "\\*");
 const replaceAll = (replacement, search, text) => text.replace(new RegExp(escapeRegExp(search), "g"), replacement);
 
 const normalize = input => {
-
   if (input.startsWith("//[")) {
     const body = input.substring(input.indexOf("\n") + 1);
     const separators = input.substring(3, input.lastIndexOf("]")).split("][");
@@ -19,7 +18,12 @@ const normalize = input => {
         body
     );
   }
-  return replaceAll(",", "\n", input);
+  const body = input;
+  const separators = ["\n"];
+  return separators.reduce(
+      (output, separator) => replaceAll(",", separator, output),
+      body
+  );
 };
 
 export default input => {
