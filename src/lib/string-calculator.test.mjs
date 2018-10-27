@@ -15,6 +15,7 @@ describe("Puede usar otros separadores", () => {
   });
   test("Permite definir separadores personalizados", () => {
     expect(sc("//;\n1;2")).toBe(3);
+    expect(sc("//[***]\n1***2")).toBe(3);
   });
 });
 
