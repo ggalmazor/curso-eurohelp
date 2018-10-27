@@ -6,10 +6,7 @@ export default input => {
 
   let normalizedInput = input.replace(/\n/g, ",");
   if (normalizedInput.startsWith("//")){
-    const search = normalizedInput[2];
-    const text = normalizedInput.substring(4);
-    const replacement = ",";
-    normalizedInput = replaceAll(replacement, search, text);
+    normalizedInput = replaceAll(",", normalizedInput[2], normalizedInput.substring(4));
   }
 
   const parts = normalizedInput.split(",");
