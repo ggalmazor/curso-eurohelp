@@ -5,7 +5,7 @@ export default input => {
   if (input.indexOf(",") === -1)
     return parseInt(input, 10);
 
-  const partA = input.substring(0, input.indexOf(","));
-  const partB = input.substring(input.indexOf(",") + 1);
-  return parseInt(partA) + parseInt(partB);
+  const parts = input.split(",");
+  const numbers = parts.map(part => parseInt(part, 10));
+  return numbers.reduce((a, b) => a + b, 0);
 }
