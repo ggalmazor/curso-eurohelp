@@ -4,7 +4,7 @@ export default input => {
   if (input === "")
     return 0;
 
-  let normalizedInput = input.replace(/\n/g, ",");
+  let normalizedInput = replaceAll(",", "\n", input);
   if (normalizedInput.startsWith("//")){
     normalizedInput = replaceAll(",", normalizedInput[2], normalizedInput.substring(4));
   }
