@@ -3,9 +3,11 @@ const replaceAll = (replacement, search, text) => text.replace(new RegExp(escape
 
 const normalize = input => {
   if (input.startsWith("//[")) {
-    let body = input.substring(input.indexOf("\n") + 1);
     const separators = input.substring(3, input.lastIndexOf("]")).split("][");
-    return separators.reduce((output, separator) => replaceAll(",", separator, output), body);
+    return separators.reduce(
+        (output, separator) => replaceAll(",", separator, output),
+        input.substring(input.indexOf("\n") + 1)
+    );
   }
   if (input.startsWith("//")) {
     const separator = input[2];
