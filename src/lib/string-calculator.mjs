@@ -1,28 +1,20 @@
 const escapeRegExp = search => search.replace(/\*/g, "\\*");
 const replaceAll = (replacement, search, text) => text.replace(new RegExp(escapeRegExp(search), "g"), replacement);
 
-const parseSeparators = input => {
-  if (input.startsWith("//["))
-    return input.substring(3, input.lastIndexOf("]")).split("][");
-  if (input.startsWith("//"))
-    return [input[2]];
-  return ["\n"];
-};
+const parseSeparators = input => input.startsWith("//[")
+    ? input.substring(3, input.lastIndexOf("]")).split("][")
+    : input.startsWith("//")
+        ? [input[2]]
+        : ["\n"];
 
-const parseBody = input => {
-  if (input.startsWith("//"))
-    return input.substring(input.indexOf("\n") + 1);
-  return input;
-};
+const parseBody = input => input.startsWith("//")
+    ? input.substring(input.indexOf("\n") + 1)
+    : input;
 
-const normalize = input => {
-  const body = parseBody(input);
-  const separators = parseSeparators(input);
-  return separators.reduce(
-      (output, separator) => replaceAll(",", separator, output),
-      body
-  );
-};
+const normalize = input => parseSeparators(input).reduce(
+    (output, separator) => replaceAll(",", separator, output),
+    parseBody(input)
+);
 
 export default input => {
   if (input === "")
