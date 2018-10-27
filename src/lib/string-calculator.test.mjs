@@ -8,3 +8,7 @@ test("Puede sumar numeros separados con coma dentro de una cadena", () => {
   expect(sc("10,20")).toBe(30);
   expect(sc("1,2,3")).toBe(6);
 });
+
+test("Puede usar newline como separador", () => {
+  expect(sc("1\n2")).toBe(3);
+});
