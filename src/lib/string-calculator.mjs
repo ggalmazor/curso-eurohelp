@@ -2,5 +2,5 @@ export default input => {
   if (input === "")
     return 0;
 
-  return 1;
+  return parseInt(input, 10);
 }
