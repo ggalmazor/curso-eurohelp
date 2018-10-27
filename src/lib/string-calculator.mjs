@@ -16,9 +16,6 @@ const normalize = input => parseSeparators(input).reduce(replaceAll(","), parseB
 const lessThan = n => m => m < n;
 
 export default input => {
-  if (input === "")
-    return 0;
-
   const normalizedInput = normalize(input);
 
   const parts = normalizedInput.split(",");
