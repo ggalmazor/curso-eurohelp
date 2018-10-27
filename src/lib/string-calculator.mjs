@@ -10,8 +10,6 @@ const parseSeparators = input => {
 };
 
 const parseBody = input => {
-  if (input.startsWith("//["))
-    return input.substring(input.indexOf("\n") + 1);
   if (input.startsWith("//"))
     return input.substring(input.indexOf("\n") + 1);
   return input;
