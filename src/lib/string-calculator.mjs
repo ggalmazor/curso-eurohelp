@@ -10,9 +10,11 @@ const normalize = input => {
     );
   }
   if (input.startsWith("//")) {
-    const separator = input[2];
-    const body = input.substring(4);
-    return replaceAll(",", separator, body);
+    const separators = [input[2]];
+    return separators.reduce(
+        (output, separator) => replaceAll(",", separator, output),
+        input.substring(input.indexOf("\n") + 1)
+    );
   }
   return replaceAll(",", "\n", input);
 };
