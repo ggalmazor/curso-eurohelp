@@ -13,3 +13,7 @@ test("Puede usar otros separadores", () => {
   expect(sc("1\n2")).toBe(3);
   expect(sc("//;\n1;2")).toBe(3);
 });
+
+test("Falla si detecta números negativos", () => {
+  expect(() => sc("-1,2")).toThrow(/-1/);
+});
