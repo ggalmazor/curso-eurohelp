@@ -11,4 +11,5 @@ test("Puede sumar numeros separados con coma dentro de una cadena", () => {
 
 test("Puede usar newline como separador", () => {
   expect(sc("1\n2")).toBe(3);
+  expect(sc("//;\n1;2")).toBe(3);
 });
