@@ -5,8 +5,10 @@ export default input => {
     return 0;
 
   let normalizedInput = replaceAll(",", "\n", input);
-  if (normalizedInput.startsWith("//")){
-    normalizedInput = replaceAll(",", normalizedInput[2], normalizedInput.substring(4));
+  if (normalizedInput.startsWith("//")) {
+    const separator = normalizedInput[2];
+    const body = normalizedInput.substring(4);
+    normalizedInput = replaceAll(",", separator, body);
   }
 
   const parts = normalizedInput.split(",");
