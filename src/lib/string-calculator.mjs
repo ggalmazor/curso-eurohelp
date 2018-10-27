@@ -1,1 +1,1 @@
-export default () => 0;
+export default input => input === "" ? 0 : 1;
