@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "browser-sync start --server --watch --directory --serveStatic 'src'",
-    "test": "mocha --compilers js:babel-core/register **/*-spec.mjs"
+    "test": "mocha --require @babel/register **/*-spec.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
     "browser-sync": "^2.26.3",
     "mocha": "^6.1.4",
     "should": "^13.2.3",
